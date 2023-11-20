@@ -1,0 +1,22 @@
+<p>weather works!</p>
+<!-- weather.component.html -->
+
+<!-- weather.component.html -->
+
+<div *ngIf="weatherData" class="weather-container">
+    <div class="weather-header">
+      <h2>Weather Report for {{weatherData.location?.name}}, {{weatherData.location?.country}}</h2>
+      <p>Last updated: {{weatherData.current?.last_updated}}</p>
+    </div>
+  
+    <div class="weather-details">
+      <p>Temperature: {{weatherData.current?.temp_c}}°C ({{weatherData.current?.temp_f}}°F)</p>
+      <p>Condition: {{weatherData.current?.condition?.text}}</p>
+      <p>Humidity: {{weatherData.current?.humidity}}%</p>
+      <!-- Add more details as needed -->
+    </div>
+  </div>
+  
+  <p *ngIf="!weatherData" class="loading-message">Loading weather data...</p>
+  
+  

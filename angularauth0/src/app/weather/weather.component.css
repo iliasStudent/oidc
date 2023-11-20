@@ -1,0 +1,32 @@
+/* weather.component.css */
+
+.weather-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .weather-header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .weather-details {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .weather-details p {
+    margin: 5px 0;
+  }
+  
+  .loading-message {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+  }
+  
