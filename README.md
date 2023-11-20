@@ -53,7 +53,7 @@ getAccessToken(authorizationCode: string): Observable<any> {
 ```
 
 # Passing the access token to API
-```javascript:
+```javascript
 getCurrentWeather(city: string, access_token: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${access_token} `
