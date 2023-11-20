@@ -36,7 +36,7 @@ Before running the application, ensure you have the following installed:
   }
 ```
 # Get access token after authenticating with authorization code from Auth0
-```typescript: 
+``` typescript: 
 getAccessToken(authorizationCode: string): Observable<any> {
     const body = new URLSearchParams();
     body.set('grant_type', 'authorization_code');
@@ -49,5 +49,15 @@ getAccessToken(authorizationCode: string): Observable<any> {
       .set('Content-Type', 'application/x-www-form-urlencoded');
 
     return this.http.post("https://dev-vjf815mo6cnziql2.eu.auth0.com/oauth/token/", body.toString(), { headers: headers });
+  }
+```
+
+# Passing the access token to API
+```javascript:
+getCurrentWeather(city: string, access_token: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${access_token} `
+    });
+    return this.http.get<weatherData>(this.apiUrl + city, {headers});
   }
 ```
