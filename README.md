@@ -19,7 +19,7 @@ Before running the application, ensure you have the following installed:
 - [Angular CLI](https://cli.angular.io/) (version x.x.x)
 
 # Login in to Auth0
-```typescript:
+```typescript
   login(): Observable<any> {
     const params = new URLSearchParams();
     params.set('response_type', 'code');
@@ -36,7 +36,7 @@ Before running the application, ensure you have the following installed:
   }
 ```
 # Get access token after authenticating with authorization code from Auth0
-``` typescript: 
+``` typescript 
 getAccessToken(authorizationCode: string): Observable<any> {
     const body = new URLSearchParams();
     body.set('grant_type', 'authorization_code');
