@@ -1,3 +1,19 @@
+# Samenvatting
+
+IAM (Identity and Access Management) wordt gebruikt om de toegang en rechten binnen een organisatie te beheren. Hierbij worden gebruikers geauthentiseerd en geautoriseerd, zodat ze veilig toegang kunnen krijgen tot resources.
+
+Authenticatie is het proces waarbij wordt geverifieerd dat de gebruiker is wie hij beweert te zijn, en autorisatie is het proces waarbij wordt bepaald tot welke resources de geauthentiseerde gebruiker toegang heeft, op basis van zijn rechten.
+
+Auth0 is een IAM-oplossing die gebruik maakt van de protocollen OIDC (OpenID Connect) voor authenticatie en OAuth2 voor authorisatie.
+
+Voor deze opdracht wordt er gebruik gemaakt van een SPA (Single Page Application). De gebruiker logt in op de applicatie (SPA) met behulp van het OIDC (OpenID Connect) protocol. Na een succesvolle login ontvangt de SPA een ID-token van OIDC. Dit ID-token bevestigt de identiteit van de gebruiker. Vervolgens wordt het OAuth 2.0 protocol gebruikt voor autorisatie, zodat de gebruiker toegang krijgt tot de API's. Na een succesvolle autorisatie ontvangt de SPA een access token van OAuth 2.0, waarmee de SPA toegang kan krijgen tot de beveiligde API's en resources aan de hand van de rechten van de gebruiker.
+
+PDP (Policy Decision Point) neemt de beslissing of een gebruiker toegang heeft tot bepaalde resources op basis van beleidsregels en gebruikersattributen.
+
+PEP (Policy Enforcement Point) voert de beslissing uit die door de PDP is genomen. Dus PEP verleent of weigert toegang tot de resources voor de gebruiker op basis van de beslissing van de PDP.
+
+In deze opdracht is OPA (Open Policy Agent) de PDP.
+
 # OpenID Connect Single Page Application (SPA) with Angular and Node.js
 
 ## Overview
