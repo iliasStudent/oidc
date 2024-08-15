@@ -4,14 +4,14 @@ const jwksClient = require('jwks-rsa');
 const axios = require('axios');
 
 const apiUrl = 'http://api.weatherapi.com/v1/current.json';
-const apiKey = '6a060dcf7d41496db2802622231811';
+const apiKey = '270fd59ba8804655885135026241508';
 
 const cors = require('cors');
 const { request } = require('http');
 const app = express();
 app.use(cors());
 const client = jwksClient({
-  jwksUri: 'https://dev-vjf815mo6cnziql2.eu.auth0.com/.well-known/jwks.json' // Replace with your Auth0 domain
+  jwksUri: 'https://dev-7qvir82wwwaaewg7.us.auth0.com/.well-known/jwks.json' // Replace with your Auth0 domain
 });
 
 function getKey(header, callback) {
@@ -35,27 +35,34 @@ async function getCurrentWeather(city) {
     }
   }
 
+//OPA
 app.get('/api/weather/:city', async (req, res) => {
   console.log(req.params["city"]);
   const token = req.headers['authorization']?.split(' ')[1];
-  console.log(req);
-  console.log(req.body);
+  console.log("THISSSS: " + token)
+  console.log("END")
   if (!token) {
+    console.log("HIER1111");
     return res.status(401).send('Unauthorized: No token provided');
   }
 
   jwt.verify(token, getKey, async function(err, decoded) {
     if (err) {
+      console.log("HIER");
       return res.status(403).send('Forbidden: Invalid token');
     }
+
+    console.log(decoded)
 
     if (decoded && decoded.permissions && decoded.permissions.includes('read:weather')) {
         console.log(getCurrentWeather(req.params["city"]));
       return res.send(await getCurrentWeather(req.params["city"]));
     } else {
+      console.log("HIER22222");
       return res.status(403).send('Forbidden: Missing "api" permission');
     }
   });
+  //OPA
 });
 
 const PORT = 3000;
