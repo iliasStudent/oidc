@@ -35,34 +35,49 @@ async function getCurrentWeather(city) {
     }
   }
 
-//OPA
+//OPA check functie
+async function checkOPAPolicy(permissions) {
+  console.log('Checking OPA with permissions:', permissions);
+  try {
+    const response = await axios.post('http://localhost:8181/v1/data/example/allow', {
+      input: { permissions: permissions }
+    });
+    return response.data.result;
+  } catch (error) {
+    console.error('Error communicating with OPA:', error);
+    return false;
+  }
+}
+//OPA check functie
+
 app.get('/api/weather/:city', async (req, res) => {
-  console.log(req.params["city"]);
+  //console.log(req.params["city"]);
   const token = req.headers['authorization']?.split(' ')[1];
-  console.log("THISSSS: " + token)
-  console.log("END")
   if (!token) {
-    console.log("HIER1111");
     return res.status(401).send('Unauthorized: No token provided');
   }
 
   jwt.verify(token, getKey, async function(err, decoded) {
     if (err) {
-      console.log("HIER");
       return res.status(403).send('Forbidden: Invalid token');
     }
 
-    console.log(decoded)
+    //TEST
+    console.log('Decoded JWT:', decoded);
+    //TEST
 
-    if (decoded && decoded.permissions && decoded.permissions.includes('read:weather')) {
-        console.log(getCurrentWeather(req.params["city"]));
+    //OPA integratie
+    const permissions = decoded.permissions || [];
+    const isAllowed = await checkOPAPolicy(permissions);
+
+    if (isAllowed) {
+        //console.log(getCurrentWeather(req.params["city"]));
       return res.send(await getCurrentWeather(req.params["city"]));
     } else {
-      console.log("HIER22222");
-      return res.status(403).send('Forbidden: Missing "api" permission');
+      return res.status(403).send('Forbidden: Access denied by OPA');
     }
+    //OPA integratie
   });
-  //OPA
 });
 
 const PORT = 3000;
