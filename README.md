@@ -6,7 +6,7 @@ Authenticatie is het proces waarbij wordt geverifieerd dat de gebruiker is wie h
 
 Auth0 is een IAM-oplossing die gebruik maakt van de protocollen OIDC (OpenID Connect) voor authenticatie en OAuth2 voor authorisatie.
 
-Voor deze opdracht wordt er gebruik gemaakt van een SPA (Single Page Application). De gebruiker logt in op de applicatie (SPA) met behulp van het OIDC (OpenID Connect) protocol. Na een succesvolle login ontvangt de SPA een ID-token van OIDC. Dit ID-token bevestigt de identiteit van de gebruiker. Vervolgens wordt het OAuth 2.0 protocol gebruikt voor autorisatie, zodat de gebruiker toegang krijgt tot de API's. Na een succesvolle autorisatie ontvangt de SPA een access token van OAuth 2.0, waarmee de SPA toegang kan krijgen tot de beveiligde API's en resources aan de hand van de rechten van de gebruiker.
+Voor deze opdracht wordt er gebruik gemaakt van een SPA (Single Page Application) met Angular als front-end en Node.js als back-end. De gebruiker logt in op de applicatie (SPA) met behulp van het OIDC (OpenID Connect) protocol. Na een succesvolle login ontvangt de SPA een ID-token van OIDC. Dit ID-token bevestigt de identiteit van de gebruiker. Vervolgens wordt het OAuth 2.0 protocol gebruikt voor autorisatie, zodat de gebruiker toegang krijgt tot de API's. Na een succesvolle autorisatie ontvangt de SPA een access token van OAuth 2.0, waarmee de SPA toegang kan krijgen tot de beveiligde API's en resources aan de hand van de rechten van de gebruiker.
 
 PDP (Policy Decision Point) neemt de beslissing of een gebruiker toegang heeft tot bepaalde resources op basis van beleidsregels en gebruikersattributen.
 
